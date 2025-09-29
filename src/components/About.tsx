@@ -6,7 +6,7 @@ export default function About() {
             About Me
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto text-center leading-relaxed">
-            DevOps and Cloud Engineer with 8+ years of total IT experience, 
+            DevOps and Cloud Engineer with 9 years of total IT experience, 
             including 3 years of hands-on DevOps experience. Proven ability to 
             build scalable infrastructure, automate deployments, and manage 
             cloud-native applications using AWS, Docker, Kubernetes, Terraform, 
