@@ -50,11 +50,17 @@ jobs:
         run: |
           aws ecs describe-task-definition --task-definition ${{ env.ECS_TASK_DEFINITION }} --query taskDefinition > task-definition.json
 
+      # START: NEW STEP TO FIX THE ERROR
+      - name: Remove unsupported keys from task definition
+        run: |
+          jq 'del(.enableFaultInjection)' task-definition.json > task-definition-clean.json
+      # END: NEW STEP
+
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
-          task-definition: task-definition.json
+          task-definition: task-definition-clean.json # Use the cleaned file
           container-name: ${{ env.CONTAINER_NAME }}
           image: ${{ steps.build-image.outputs.image }}
 
